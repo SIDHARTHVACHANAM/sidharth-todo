@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    <title>TODO</title>
+</head>
+<body>
+    <style>
+        .form{
+          margin-top:15%;
+          margin-left: 30%;
+        }
+    </style>
+    <div id="todo">
+        <div class="form">
+            <h1 class="text-primary"><b>TODO SIGNUP</h1>
+                <form class="row g-3">
+                    <div class="col-auto">
+                        <label for="name">USERNAME</label>
+                        <input type="text" class="form-control" id="name" placeholder="XXXXX">
+                    </div>
+                    <div class="col-auto">
+                        <label for="Password">PASSWORD</label>
+                        <input type="password" class="form-control" id="Password" placeholder="XXXXX">
+                    </div>
+                    <div class="col-auto">
+                        <button onclick="todo();" class="btn btn-primary mb-3">SUBMIT</button>
+                    </div>
+                </form>
+        </div>
+        
+    </div>
+    <script>
+      function todo(callback){
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function(){
+    if(this.readyState==4&this.status==200){
+        var response = JSON.parse(this.responseText);
+        var jtodo = response.todo;
+        var output ="<div class=form-checked>";
+        output +="<ul class=nav justify-content-center>";
+        output +="<li class=nav-item>";
+        output +="<a class=nav-link active aria-current=page href=#><b>TODO LIST</a>";
+        output +="</li>";
+        output +="<li class=nav-item>";
+        output +="<a class=nav-link href=index.html>LOGOUT</a>";
+        output +="</li>";
+        output +="</ul>";
+        for(var i=0;i<jtodo.length;i++){
+            output += "<input class=form-check-input type=checkbox></input>";
+            output +="<label class=form-check-label>"+ jtodo[i].title +"</label>";
+        }
+       output +="</div>";
+        document.getElementById("todo").innerHTML=output;
+    }
+}
+xhttp.open("GET","https://jsonplaceholder.typicode.com/todos",true);
+xhttp.send(); 
+callback(valid);
+}
+        
+       
+ function valid(nam,pwd){
+     var pwd =document.getElementById("Password");
+     var nam =document.getElementById("name");
+ 
+     if(nam.value=="admin"&&pwd.value=="12345"){
+        return true;
+     }
+     else{
+        return false;
+     }
+ }
+ todo(valid);
+
+ var checked = true;
+ const todo = new Promise(function(resolve,reject){
+     if(checked.length=5){
+         alert="Congrats. 5 Tasks have been Successfully Completed ";
+         resolve (todo);
+     }
+     else{
+        reject();
+     }
+     
+ }) 
+ todo
+ .then()
+ valid()
+    </script>
+</body>
+</html>
